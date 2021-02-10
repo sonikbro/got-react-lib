@@ -12,3 +12,12 @@
 .toggle-btn:focus {
     outline: none;
 }
+.app {
+    background: url('got.jpg') center center no-repeat;
+    background-size: cover;
+    min-height: 120vh;	
+}
+
+h1 {
+    color: #fff
+}

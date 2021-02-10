@@ -1,32 +1,31 @@
 import React, {Component} from 'react';
-import GotService from '../../services/gotService';
 import './randomChar.css';
+import gotService from '../../services/gotService';
 import Spinner from '../spinner';
-import ErrorMessage from '../errorMessage'
+import ErrorMessage from '../errorMessage';
 
 export default class RandomChar extends Component {
-    
-    gotService = new GotService();
 
+    gotService = new gotService();
     state = {
         char: {},
         loading: true,
-        error: false 
+        error: false
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.updateChar();
-        this.timerID = setInterval(this.updateChar, 5000);
+        this.timerId = setInterval(this.updateChar, 15000);
     }
 
     componentWillUnmount(){
-        clearInterval(this.timerID)
+        clearInterval(this.timerId);
     }
 
     onCharLoaded = (char) => {
         this.setState({
             char,
-            loading: false,
+            loading: false
         })
     }
 
@@ -38,12 +37,10 @@ export default class RandomChar extends Component {
     }
 
     updateChar = () => {
-        console.log('update')
-        const id = Math.floor(Math.random()*140 + 25);
-        // const id = 166666;
+        const id = Math.floor(Math.random()*140 + 25); //25-140
         this.gotService.getCharacter(id)
             .then(this.onCharLoaded)
-            .catch(this.onError)
+            .catch(this.onError);
     }
 
     render() {
@@ -62,15 +59,14 @@ export default class RandomChar extends Component {
         );
     }
 }
-
 const View = ({char}) => {
     const {name, gender, born, died, culture} = char;
     return (
         <>
-            <h4>Випадковий персонаж: {name}</h4>
+            <h4>Random Character: {name}</h4>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Гендер </span>
+                    <span className="term">Стать </span>
                     <span>{gender}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
@@ -82,7 +78,7 @@ const View = ({char}) => {
                     <span>{died}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Культура </span>
+                    <span className="term">Віра </span>
                     <span>{culture}</span>
                 </li>
             </ul>

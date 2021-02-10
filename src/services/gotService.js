@@ -1,9 +1,10 @@
+
 export default class GotService {
     constructor() {
         this._apiBase = 'https://www.anapioficeandfire.com/api';
     }
 
-    async getResource(url) {
+    getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
     
         if (!res.ok) {
@@ -33,12 +34,12 @@ export default class GotService {
         return this._transformCharacter(character);
     }
     
-    getAllHouses = async () =>{
+    getAllHouses = async () => {
         const res = await this.getResource(`/houses/`);
         return res.map(this._transformHouse);
     }
     
-    getHouse = async (id) =>{
+    getHouse = async (id) => {
         const house = await this.getResource(`/houses/${id}/`);
         return this._transformHouse(house);
     }
@@ -47,10 +48,10 @@ export default class GotService {
         if (data) {
             return data
         } else {
-            return 'no data :('
+            return 'немає даних :('
         }
-    }    
-    
+    }
+
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)$/;
         return item.url.match(idRegExp)[1];

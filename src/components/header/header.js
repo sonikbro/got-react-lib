@@ -1,51 +1,27 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const HeaderBlock = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-`;
-
-const HeaderTitle = styled.h3`
-    font-size: 24px;
-    color: #fff;
-    margin: 0;
-`;
-
-const HeaderLinks = styled.ul`
-    display: flex;
-    margin: 0;
-    align-items: center;
-    color: #fff;
-    list-style-type: none;
-    li {
-        margin-right: 20px;
-        font-size: 18px;
-    }
-`;
+import './header.css';
+import {Link} from 'react-router-dom';
 
 const Header = () => {
     return (
-        <HeaderBlock>
-            <HeaderTitle>
-                <a href="#">
-                База Знань "Game of Thrones"
-                </a>
-            </HeaderTitle>
-            <HeaderLinks>
+        <div className="header">
+            <h3 className="header-title">
+                <Link to='/'>
+                Game of Thrones DB
+                </Link>
+            </h3>
+            <ul className="header-list">
                 <li>
-                    <a href="#">Персонажі</a>
+                    <Link to='/characters/'>Персонажі</Link>
                 </li>
                 <li>
-                    <a href="#">Будинки</a>
+                    <Link to='/houses/'>Будинки</Link>
                 </li>
                 <li>
-                    <a href="#">Книги</a>   
+                    <Link to='/books/'>Книги</Link>   
                 </li>
-            </HeaderLinks>
-        </HeaderBlock>
+            </ul>
+        </div>
     );
 };
 
